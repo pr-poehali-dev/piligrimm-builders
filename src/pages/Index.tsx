@@ -79,24 +79,31 @@ export default function Index() {
       </header>
 
       <main>
-        <section id="main" className="py-24 bg-gradient-to-b from-muted to-background">
-          <div className="container mx-auto px-4">
+        <section id="main" className="py-28 bg-gradient-to-b from-muted to-background relative overflow-hidden">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl"></div>
+          <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto text-center animate-fade-in">
-              <h2 className="text-5xl md:text-6xl font-bold text-primary mb-6 leading-tight">
+              <div className="inline-block mb-4 px-4 py-1.5 bg-accent/10 rounded-full text-sm font-medium text-accent">
+                С 2005 года строим будущее Якутии
+              </div>
+              <h2 className="text-5xl md:text-7xl font-bold text-primary mb-7 leading-tight">
                 Строительная компания<br />
-                <span className="text-accent">Пилигримм</span>
+                <span className="text-accent relative inline-block">
+                  Пилигримм
+                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-accent/30 transform -rotate-1"></div>
+                </span>
               </h2>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground mb-9 leading-relaxed max-w-3xl mx-auto">
                 Одна из динамично развивающихся строительных компаний Республики Саха (Якутия) 
                 с высоким уровнем производства и современной технологией в сфере гражданского 
                 многоквартирного строительства.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-accent hover:bg-accent/90" onClick={() => scrollToSection('projects')}>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 shadow-lg hover:shadow-xl transition-all" onClick={() => scrollToSection('projects')}>
                   <Icon name="Building2" size={20} className="mr-2" />
                   Наши объекты
                 </Button>
-                <Button size="lg" variant="outline" onClick={() => scrollToSection('contacts')}>
+                <Button size="lg" variant="outline" className="hover:bg-accent/5" onClick={() => scrollToSection('contacts')}>
                   <Icon name="Mail" size={20} className="mr-2" />
                   Связаться с нами
                 </Button>
@@ -105,17 +112,27 @@ export default function Index() {
           </div>
         </section>
 
-        <section className="py-16 bg-background">
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h3 className="text-4xl font-bold text-primary mb-12 text-center">Наши проекты</h3>
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="mb-14">
+                <h3 className="text-3xl md:text-4xl font-bold text-primary mb-3">Наши проекты</h3>
+                <div className="w-20 h-1.5 bg-accent"></div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                 {galleryImages.map((image, index) => (
-                  <div key={image.id} className="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow animate-fade-in" style={{ animationDelay: `${index * 0.15}s` }}>
+                  <div 
+                    key={image.id} 
+                    className="overflow-hidden rounded-sm shadow-md hover:shadow-2xl transition-all duration-300 animate-fade-in group" 
+                    style={{ 
+                      animationDelay: `${index * 0.15}s`,
+                      transform: index === 1 ? 'translateY(20px)' : 'translateY(0)'
+                    }}
+                  >
                     <img 
                       src={image.url} 
                       alt={image.title}
-                      className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>
                 ))}
@@ -145,66 +162,79 @@ export default function Index() {
                 </div>
               </Card>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-                  <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name="Award" className="text-accent" size={32} />
+              <div className="grid md:grid-cols-3 gap-5">
+                <Card className="p-7 hover:shadow-lg transition-shadow border-l-4 border-l-accent">
+                  <div className="bg-accent/10 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <Icon name="Award" className="text-accent" size={28} />
                   </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">Опыт</h4>
-                  <p className="text-muted-foreground text-sm">Большой опыт в возведении многоэтажных жилых домов</p>
+                  <h4 className="text-lg font-semibold text-primary mb-2.5">Опыт</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Большой опыт в возведении многоэтажных жилых домов</p>
                 </Card>
 
-                <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-                  <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name="Ruler" className="text-accent" size={32} />
+                <Card className="p-7 hover:shadow-lg transition-shadow border-l-4 border-l-transparent hover:border-l-accent">
+                  <div className="bg-accent/10 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <Icon name="Ruler" className="text-accent" size={28} />
                   </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">Проекты</h4>
-                  <p className="text-muted-foreground text-sm">Типовые и индивидуальные проекты любой сложности</p>
+                  <h4 className="text-lg font-semibold text-primary mb-2.5">Проекты</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Типовые и индивидуальные проекты любой сложности</p>
                 </Card>
 
-                <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-                  <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name="Clock" className="text-accent" size={32} />
+                <Card className="p-7 hover:shadow-lg transition-shadow">
+                  <div className="bg-accent/10 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                    <Icon name="Clock" className="text-accent" size={28} />
                   </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">Сроки</h4>
-                  <p className="text-muted-foreground text-sm">Выполнение работ точно в установленный срок</p>
+                  <h4 className="text-lg font-semibold text-primary mb-2.5">Сроки</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Выполнение работ точно в установленный срок</p>
                 </Card>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="projects" className="py-20 bg-muted">
+        <section id="projects" className="py-24 bg-muted">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h3 className="text-4xl font-bold text-primary mb-4 text-center">Объекты</h3>
-              <p className="text-center text-muted-foreground mb-12">
-                Построенные и реализованные проекты нашей компании
-              </p>
+              <div className="flex items-center justify-between mb-10">
+                <div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">Объекты</h3>
+                  <p className="text-muted-foreground">
+                    Построенные и реализованные проекты
+                  </p>
+                </div>
+                <div className="hidden md:block w-24 h-1 bg-accent/30"></div>
+              </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project, index) => (
-                  <Card key={project.id} className="overflow-hidden hover:shadow-xl transition-shadow animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                    <div className="aspect-video bg-muted flex items-center justify-center">
-                      <Icon name="Building2" className="text-muted-foreground" size={64} />
+                  <Card 
+                    key={project.id} 
+                    className="overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in group" 
+                    style={{ 
+                      animationDelay: `${index * 0.1}s`,
+                      transform: index === 1 ? 'translateY(-8px)' : 'translateY(0)'
+                    }}
+                  >
+                    <div className="aspect-video bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center relative overflow-hidden">
+                      <Icon name="Building2" className="text-muted-foreground group-hover:scale-110 transition-transform duration-300" size={56} />
+                      <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">
                           Сдан
                         </span>
                       </div>
-                      <h4 className="text-xl font-semibold text-primary mb-2">{project.title}</h4>
+                      <h4 className="text-lg font-semibold text-primary mb-1.5 group-hover:text-accent transition-colors">{project.title}</h4>
                       <p className="text-muted-foreground text-sm">{project.type}</p>
                     </div>
                   </Card>
                 ))}
               </div>
 
-              <div className="text-center mt-12">
-                <Button variant="outline" size="lg">
+              <div className="mt-14 flex justify-center">
+                <Button variant="outline" size="lg" className="group">
                   Смотреть все объекты
-                  <Icon name="ArrowRight" size={20} className="ml-2" />
+                  <Icon name="ArrowRight" size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
             </div>
@@ -231,56 +261,63 @@ export default function Index() {
           </div>
         </section>
 
-        <section id="contacts" className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
+        <section id="contacts" className="py-20 bg-muted relative overflow-hidden">
+          <div className="absolute -top-20 -left-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+          <div className="container mx-auto px-4 relative">
             <div className="max-w-4xl mx-auto">
-              <h3 className="text-4xl font-bold text-primary mb-12 text-center">Контакты</h3>
+              <div className="mb-14">
+                <h3 className="text-3xl md:text-4xl font-bold text-primary mb-3">Контакты</h3>
+                <div className="w-20 h-1.5 bg-accent"></div>
+              </div>
               
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card className="p-8">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="bg-accent/10 p-3 rounded-lg">
-                      <Icon name="Phone" className="text-accent" size={24} />
+              <div className="grid md:grid-cols-5 gap-6">
+                <Card className="md:col-span-3 p-7 space-y-6">
+                  <div className="flex items-start gap-5">
+                    <div className="bg-accent/10 p-3.5 rounded-xl">
+                      <Icon name="Phone" className="text-accent" size={22} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-primary mb-1">Телефон</h4>
+                      <h4 className="font-semibold text-primary mb-1.5">Телефон</h4>
                       <a href="tel:+79849849849" className="text-lg text-accent hover:underline">
                         8 984 984 98 49
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="bg-accent/10 p-3 rounded-lg">
-                      <Icon name="MapPin" className="text-accent" size={24} />
+                  <div className="flex items-start gap-5">
+                    <div className="bg-accent/10 p-3.5 rounded-xl">
+                      <Icon name="MapPin" className="text-accent" size={22} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-primary mb-1">Адрес</h4>
+                      <h4 className="font-semibold text-primary mb-1.5">Адрес</h4>
                       <p className="text-muted-foreground">ул. Кирова 32, 301 офис</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="bg-accent/10 p-3 rounded-lg">
-                      <Icon name="Clock" className="text-accent" size={24} />
+                  <div className="flex items-start gap-5">
+                    <div className="bg-accent/10 p-3.5 rounded-xl">
+                      <Icon name="Clock" className="text-accent" size={22} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-primary mb-1">Режим работы</h4>
+                      <h4 className="font-semibold text-primary mb-1.5">Режим работы</h4>
                       <p className="text-muted-foreground">Пн-Пт с 09:00 до 18:00</p>
                       <p className="text-muted-foreground text-sm">Обед с 13:00 до 14:00</p>
                     </div>
                   </div>
                 </Card>
 
-                <Card className="p-8 bg-primary text-primary-foreground">
-                  <h4 className="text-2xl font-bold mb-4">Свяжитесь с нами</h4>
-                  <p className="mb-6 opacity-90">
-                    Готовы обсудить ваш проект? Наши специалисты ответят на все ваши вопросы.
-                  </p>
-                  <Button size="lg" variant="secondary" className="w-full">
-                    <Icon name="Mail" size={20} className="mr-2" />
-                    Отправить заявку
-                  </Button>
+                <Card className="md:col-span-2 p-8 bg-primary text-primary-foreground relative overflow-hidden">
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/5 rounded-full"></div>
+                  <div className="relative z-10">
+                    <h4 className="text-xl font-bold mb-3">Свяжитесь<br/>с нами</h4>
+                    <p className="mb-6 opacity-90 text-sm leading-relaxed">
+                      Готовы обсудить ваш проект? Наши специалисты ответят на все вопросы.
+                    </p>
+                    <Button size="lg" variant="secondary" className="w-full group">
+                      <Icon name="Mail" size={20} className="mr-2 group-hover:rotate-12 transition-transform" />
+                      Отправить заявку
+                    </Button>
+                  </div>
                 </Card>
               </div>
             </div>
