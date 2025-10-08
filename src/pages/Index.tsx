@@ -11,22 +11,32 @@ export default function Index() {
       id: 1,
       title: 'ул. Красноярова 1',
       status: 'completed',
-      type: 'Многоквартирный жилой дом',
-      image: 'https://cdn.poehali.dev/files/31ac5b14-13b9-44e3-bd1f-549118fee477.jpg'
+      type: 'Многоквартирный жилой дом'
     },
     {
       id: 2,
       title: 'ул. Кирова 32',
       status: 'completed',
-      type: 'Многоквартирный жилой дом',
-      image: 'https://cdn.poehali.dev/files/66e50908-2e18-4ae9-8c07-057f6ed61fb8.jpg'
+      type: 'Многоквартирный жилой дом'
     },
     {
       id: 3,
       title: 'Таун-хаусы Покровский тракт 17 км',
       status: 'completed',
-      type: 'Таун-хаусы',
-      image: 'https://cdn.poehali.dev/files/31ac5b14-13b9-44e3-bd1f-549118fee477.jpg'
+      type: 'Таун-хаусы'
+    }
+  ];
+
+  const galleryImages = [
+    {
+      id: 1,
+      url: 'https://cdn.poehali.dev/files/31ac5b14-13b9-44e3-bd1f-549118fee477.jpg',
+      title: 'Современный жилой комплекс'
+    },
+    {
+      id: 2,
+      url: 'https://cdn.poehali.dev/files/66e50908-2e18-4ae9-8c07-057f6ed61fb8.jpg',
+      title: 'Архитектурный проект'
     }
   ];
 
@@ -95,6 +105,25 @@ export default function Index() {
           </div>
         </section>
 
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <h3 className="text-4xl font-bold text-primary mb-12 text-center">Наши проекты</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                {galleryImages.map((image, index) => (
+                  <div key={image.id} className="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow animate-fade-in" style={{ animationDelay: `${index * 0.15}s` }}>
+                    <img 
+                      src={image.url} 
+                      alt={image.title}
+                      className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="about" className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -156,12 +185,8 @@ export default function Index() {
               <div className="grid md:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
                   <Card key={project.id} className="overflow-hidden hover:shadow-xl transition-shadow animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                    <div className="aspect-video bg-muted overflow-hidden">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
+                    <div className="aspect-video bg-muted flex items-center justify-center">
+                      <Icon name="Building2" className="text-muted-foreground" size={64} />
                     </div>
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-2">
