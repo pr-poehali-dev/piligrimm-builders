@@ -12,21 +12,21 @@ export default function Index() {
       title: 'ул. Красноярова 1',
       status: 'completed',
       type: 'Многоквартирный жилой дом',
-      image: '/placeholder.svg'
+      image: 'https://cdn.poehali.dev/files/31ac5b14-13b9-44e3-bd1f-549118fee477.jpg'
     },
     {
       id: 2,
       title: 'ул. Кирова 32',
       status: 'completed',
       type: 'Многоквартирный жилой дом',
-      image: '/placeholder.svg'
+      image: 'https://cdn.poehali.dev/files/66e50908-2e18-4ae9-8c07-057f6ed61fb8.jpg'
     },
     {
       id: 3,
       title: 'Таун-хаусы Покровский тракт 17 км',
       status: 'completed',
       type: 'Таун-хаусы',
-      image: '/placeholder.svg'
+      image: 'https://cdn.poehali.dev/files/31ac5b14-13b9-44e3-bd1f-549118fee477.jpg'
     }
   ];
 
@@ -156,8 +156,12 @@ export default function Index() {
               <div className="grid md:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
                   <Card key={project.id} className="overflow-hidden hover:shadow-xl transition-shadow animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                    <div className="aspect-video bg-muted flex items-center justify-center">
-                      <Icon name="Building2" className="text-muted-foreground" size={64} />
+                    <div className="aspect-video bg-muted overflow-hidden">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
                     <div className="p-6">
                       <div className="flex items-center gap-2 mb-2">
